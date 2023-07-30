@@ -14,7 +14,7 @@ header file provided for sensor-WiFi communication
 
 JavaScript file provided for sensor-Wifi communication, latest edition
 
-## arduino.ino
+## theCircus_ESP32.ino
 
 Arduino code for the ESP32 board to run the sensors and send them to the website
 
