@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<a href="./index.html">Back</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="theCircus_style.css" rel="stylesheet" type="text/css" />
+</head>
+  <center>
+<h1 class = "header">Technical Report</h1>
+    </center>
+
+  <h2 class = "header">Mission Statement: </h2>
+  <p>
+Our team's primary design goal was to create a functional and reliable gauntlet that could assist us in navigating the hazardous environment of Boelter Hall after the earthquake. The gauntlet needed to incorporate essential sensors and an OLED screen to provide real-time data on gas levels, distance from obstacles, temperature, and humidity, ensuring our safety and the success of the rescue mission.
+</p>
+</html>
+
+<h3 class = "header"><em>Sensor Selection and Benefits:</em></h3>
+<ul>
+    <li>Gas Sensor: We chose the MQ135 gas sensor to detect gas leaks, as it is sensitive to various harmful gasses. By monitoring the gas levels, we can avoid dangerous areas and ensure the safety of the trapped engineers and ourselves.</li>
+    <li>Ultrasonic Sensor: The ultrasonic sensor allows us to detect objects via distance measurements, helping us navigate in the dark rooms and around debris in Boelter Hall.</li>
+  <li>Temperature and Humidity Sensor: We selected this sensor to monitor the environmental conditions inside the building, as temperature and humidity can impact rescue operations and safety. This sensor can also detect when a fire is happening nearby, since a temperature measurement above 32 degrees Celsius and a humidity measurement lower than 45% indicates a fire. </li>
+  </ul>
+  <h3 class = "header"><em>Gauntlet Design:</em></h3>
+<ul>
+  <li>Semicircular Arm Sleeve: The two primary design goals of the arm portion of the gauntlet were simplicity and ease of mounting electronics. To facilitate electronics mounting, a flat portion on the arm was necessary. The semicircular shape was a compromise between the circular shape of the arm and the need for flat electronics mounting portions.</li>
+    <li>Palm Cover: The same design choices that led to the semicircular arm sleeve resulted in the hand area of the gauntlet being also designed in a semicircular shape. User comfort was the top priority when designing the hand portion, resulting in two possibilities: fully covering the hand or only covering the palm. The decision was made to cover only the palm and leave the fingers exposed, as the design was simpler and more compact.</li>
+  <li>Separation of Parts: As part of designing the gauntlet to be 3D printed, the initial goal of printing the gauntlet in one piece was deemed unfeasible. The design was subsequently separated into multiple parts that would allow for faster 3D printing times. </li>
+</ul>
+<h3 class = "header"><em>Code Design:</em></h3>
+<ul>
+  <li>For the ESP32, the code is designed to have the electronic parts that we used interact together through circuits. The code is separated in sections that include each of the sensors and networks that work off of them. All of the sensors incorporate the OLED to display data, and the code exemplifies this. </li>
+    <li>For the ultrasonic sensor, we didn’t have any network besides the sensor and the oled. The oled simply displays the data that the ultrasonic sensor gathers.</li>
+  <li>For the gas sensor, we incorporated a buzzer. When the air quality becomes too high, the buzzer starts buzzing so our Ehero will know that the air quality is no good.</li>
+  <li>For the temperature and humidity sensor, we incorporated the LED. If the temperature and humidity sensor sensed a fire, then we would light the ring LED red, and if there was no fire, it would light up green.</li>
+</ul>
+
+<h2 class = "header">Issues with our project</h2>
+<h3 class = "header"><em>Issue 1: 3D Printing Failure</em></h3>
+<p>The 3D printing process encountered setbacks during the initial stages, causing failure at the 5th layer. The following methodical approach was used to address this issue:</p>
+<ul>
+  <li><u>Diagnosis of Failure:</u> Upon the initial failure, we identified the issue as originating from a faulty 3D printer. The printer was estimated to complete the print in 12 hours, but it failed before completion. </li>
+    <li><u>Design Revision:</u> Given the setback on day 1, the team initiated a redesign on the second day to improve time efficiency while considering aesthetic and functional aspects. This decision was driven by the need to recover lost time and ensure the completion of the project within the timeline. The revision resulted in the complete redesign of the hand portion and a smaller form factor for the gauntlet, with printing times reduced by 60-70%.</li>
+  <li><u>Prototype Production:</u> By the end of day 2, a revised design was developed and a new 3D printing process was initiated. This resulted in the creation of our first functional prototype.
+</li>
+  <li><u>Error Detection and Rectification:</u> The initial prototype, despite its functionality, contained design flaws and measurement discrepancies. Upon detection, all the parts were re-measured and the CAD design was adjusted accordingly. Special attention was given to ensure that the screw holes aligned properly to facilitate assembly and wiring.</li>
+</ul>
+<h3 class = "header"><em>Issue 2: Circuit Design Compatibility and Rewiring</em></h3>
+<p>During the development of our project, we faced challenges related to the circuit design's compatibility with our initial CAD sketch and the need for rewiring after initial prototyping. The detailed approach we followed to handle these challenges is as follows:</p>
+<ul>
+  <li><u>Design Aesthetics and Functionality:</u> Our initial idea was to place the sensors on the back of the hand to maximize their exposure and thus enable more accurate environmental readings. In contrast, the rest of the circuit, including the OLED display and the NeoRing Light, was designed to be located on the forearm. The NeoRing light was planned to function as a light source in dark environments, in addition to its role in data display.  </li>
+    <li><u>Space Optimization:</u> Considering the limited space available on the breadboard, we aimed to utilize as little surface area as possible. This requirement posed a significant design challenge, necessitating careful planning and component placement.</li>
+  <li><u>Rewiring Issue:</u> The creation of our first prototype brought to light certain unforeseen issues. After the initial assembly, we had to rewire the circuit as it was no longer functioning as expected. This was attributed to some design misalignments between the 3D printed components and the circuit.
+</li>
+  <li><u>Problem-Solving:</u> To address the challenges with the CAD design and circuit functionality, the team gathered to discuss the issues at hand and brainstorm potential solutions that would enhance the design and circuit compatibility. </li>
+</ul>
+<h3 class = "header"><em>Issue 3: OLED Display Malfunctioning</em></h3>
+<p>The OLED display system encountered issues during the initial testing phases. The following methodical approach was adopted to diagnose and resolve the problem:
+</p>
+<ul>
+  <li><u>Physical Inspection:</u> A thorough examination of the wiring and connections between the OLED display and the ESP32 was conducted.  </li>
+    <li><u>Component Testing:</u> A simple test code was implemented to verify the operational status of the OLED display. This preliminary step was crucial to isolate any hardware failures.</li>
+  <li><u>Debugging and Code Revision:</u> Once the hardware integrity was confirmed, attention was shifted towards the software aspects. The malfunctioning display was attributed to errors in the initial coding. Subsequent debugging, peer review of the code, and necessary revisions were performed to resolve the issue. 
+</li>
+  <li><u>Integration and Validation:</u> The revised code was tested with the OLED display. Following successful test results, the corrected code was integrated into the main program. </li>
+</ul>
+<h3 class = "header"><em>Issue 4: Gas Sensor Inaccuracy</em></h3>
+<p>The gas sensor's inaccurate readings posed significant challenges in ensuring precise detection and monitoring of gas concentrations. The following steps were undertaken to rectify this:
+</p>
+<ul>
+  <li><u>Connection Verification:</u> The initial step involved checking the proper connection and voltage supply to the sensor. </li>
+    <li><u>Calibration Process:</u> The gas sensor was calibrated in a controlled environment. The sensor was first exposed to room air, then to known concentrations of gasses at the testing station. During the calibration process, we tweaked the code iteratively to align the sensor readings with the known gas concentrations, aiming for less than 1000 ppm as the acceptable limit.</li>
+  <li><u>Sensor Validation:</u> To confirm the correct operation of the gas sensor, it was exposed to a gas diffuser filled with water and isopropyl alcohol. An increase in the air quality reading confirmed the functionality of the gas sensor as this response was consistent with the expected outcome.
+</li>
+  <li><u>Integration and Validation:</u> The revised code was tested with the OLED display. Following successful test results, the corrected code was integrated into the main program. </li>
+</ul>
+
+
+<h2 class = "header">CAD Iteration Process</h2>
+<p>NOTE: Electronics are shown as parts within the assembly, but are not included within the CAD files; these are for reference only.</p>
+<h4 class = "header"><u>Version 1</u></h4>
+<center>
+  <img src="theCircus_cad1.png" width="300" length="300" />
+</center>
+<p>The initial design had a hollow fist area with the gas and ultrasonic sensor on top and a 10-inch long, semicircular forearm area with all other electronic components mounted on top of the forearm. The design is still in a “proof-of-concept” stage at this point in time.</p>
+<h4 class = "header"><u>Version 2</u></h4>
+<center>
+  <img src="theCircus_cad2.png" width="300" length="300" />
+</center>
+<p>This is the version at the end of night 1 of the event. The breadboard and temperature/humidity sensors were added after it became evident that these would be necessary in the final design. Mounts were added for the sensors on the hand, mounting slots were added for the electronics on the forearm, and slots were cut for wires in both the forearm and hand pieces. The hand portion was made more spherical. An electronics cover for the forearm was added and incorporated into the design, with mounting mechanisms designed to connect the cover, forearm, and hand together.</p>
+<h4 class = "header"><u>Version 3</u></h4>
+<center>
+  <img src="theCircus_cad3.png" width= "300" length = "300"/>
+</center>
+<p>After encountering problems with 3D printing, the gauntlet was redesigned to resemble the above photo. The forearm was shortened to 8 inches, with the forearm electronics mounting positions changing to reflect that. The hand portion was completely redesigned to only cover the palm, essentially acting as an extension of the forearm with finger holes. The entire design was split into multiple parts to facilitate 3D printing - the forearm was split into the flat top and the semicircular bottom, the sensor mounts were separated from the hand, and a separate piece was created for the 4 fingers to go through the top. Mounting extrusions were created and modified to complete the design. A slot was added into the cover for visibility of the OLED screen and ring LED from the outside.
+</p>
+<h4 class = "header"><u>FINAL VERSION!</u></h4>
+<center>
+  <img src="theCircus_cad4.png" width= "300" length = "300"/>
+</center>
+<p>This is the final design of the gauntlet. The changes were generally minor but numerous: the semicircle was made slightly larger, the mounting extrusions were made skinnier to accommodate the available screw lengths, the sensor mount dimensions were edited to better fit the sensors, fillets were added for aesthetic purposes, the arm cover was made taller to accommodate wiring, and more slots for wires to run through were added.
+</p>
