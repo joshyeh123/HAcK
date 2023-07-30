@@ -57,54 +57,52 @@ void setup() {
 void loop() {
   int mq135_value = analogRead(MQ135_PIN);  // read the value from the MQ135
   //Display the value from the MQ135 sensor and appropriate warning
+  oled.setRotation(2);
   oled.clearDisplay();
   oled.setCursor(0, 0);
-  oled.println("Air Quality:");
-  oled.setCursor(0,10);
+  oled.print("Air Quality: ");
   oled.println(mq135_value);
   if(mq135_value > RED_THRESHOLD) {
-    oled.setCursor(0, 20);
+    oled.setCursor(0, 10);
     oled.println("WARNING: HIGH GAS LVL");
     digitalWrite(buzzer, HIGH);
     delay(1000);
     digitalWrite(buzzer, LOW);
   } else if(mq135_value > YELLOW_THRESHOLD) {
-    oled.setCursor(0, 20);
+    oled.setCursor(0, 10);
     oled.println("MODERATE GAS LEVEL");
   } else {
-    oled.setCursor(0, 20);
+    oled.setCursor(0, 10);
     oled.println("Air quality is good");
   }
 
 
   int distance = sonar.ping_cm();
-  oled.setCursor(0, 30);
+  oled.setCursor(0, 20);
   oled.print("Distance: ");
   oled.print(distance);
   oled.println(" cm");
 
 int status = AM2320.read();
-oled.setCursor(0, 40);
+
   float humid = AM2320.getHumidity();
   float temperature = AM2320.getTemperature();
-  if(humid < 45){
+  if(humid < 45 && temperature > 32){
+    oled.setCursor(0, 50);
+    oled.print("FIRE!");
     for(int i = 0; i < NUMPIXELS; i++){
-      pixels.setPixelColor(i, pixels.Color(0, 0, 255));
+      pixels.setPixelColor(i, pixels.Color(10, 0, 0));
     }
-  if(humid > 70){
-    for(int i = 0; i < NUMPIXELS; i++){
-      pixels.setPixelColor(i, pixels.Color(255, 0, 0));
-    }
-  }
   }else{
     for(int i = 0; i < NUMPIXELS; i++){
-      pixels.setPixelColor(i, pixels.Color(0, 255, 0));
+      pixels.setPixelColor(i, pixels.Color(0, 10, 0));
     }
   }
+oled.setCursor(0, 30);
   pixels.show();
   oled.print("Humidity(%): ");
   oled.print(humid,1);
-  oled.setCursor(0, 50);
+  oled.setCursor(0, 40);
   oled.print("Temperature(C): ");
   oled.print(temperature,1);
 
